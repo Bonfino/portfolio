@@ -1,0 +1,86 @@
+---
+const skills = [
+  {
+    category: "Frontend",
+    items: [
+      { name: "HTML", icon: "html" },
+      { name: "CSS", icon: "css" },
+      { name: "JavaScript", icon: "js" },
+      { name: "React", icon: "react" },
+      { name: "Next.js", icon: "nextjs" },
+      { name: "Astro", icon: "astro" },
+      { name: "TailwindCSS", icon: "tailwind" },
+    ],
+  },
+  {
+    category: "Backend",
+    items: [
+      { name: ".NET", icon: "dotnet" },
+      { name: "Laravel", icon: "laravel" },
+      { name: "Node.js", icon: "nodejs" },
+      { name: "C#", icon: "cs" },
+      { name: "C++", icon: "cpp" },
+      { name: "Java", icon: "java" },
+      { name: "PHP", icon: "php" },
+    ],
+  },
+  {
+    category: "Database & Cloud",
+    items: [
+      { name: "SQL", icon: "mysql" },
+      { name: "MongoDB", icon: "mongodb" },
+      { name: "Vercel", icon: "vercel" },
+    ],
+  },
+  {
+    category: "Tooling",
+    items: [
+      { name: "Docker", icon: "docker" },
+      { name: "Git", icon: "git" },
+      { name: "GitHub Actions", icon: "githubactions" },
+      { name: "Vite", icon: "vite" },
+      { name: "Unreal Engine", icon: "unreal" },
+      { name: "Unity", icon: "unity" },
+      { name: "WordPress", icon: "wordpress" },
+      { name: "Postman", icon: "postman" },
+    ],
+  },
+];
+---
+
+<section id="skills" class="container mx-auto py-16 px-4">
+  <div class="flex flex-col gap-10">
+    <h2 class="text-2xl font-medium tracking-widest uppercase text-white">
+      Skills
+    </h2>
+
+    <div
+      class="border border-[#2a2a2a] rounded-lg divide-x divide-[#2a2a2a] grid grid-cols-2 md:grid-cols-4"
+    >
+      {
+        skills.map((group) => (
+          <div class="flex flex-col gap-4 p-6">
+            <div class="flex flex-col gap-3">
+              <span class="text-xs font-medium tracking-widest uppercase text-[#8c8c8c]">
+                {group.category}
+              </span>
+              <hr class="border-[#2a2a2a]" />
+            </div>
+            <ul class="flex flex-col gap-3">
+              {group.items.map((skill) => (
+                <li class="flex items-center gap-2.5 text-base font-light text-[#F8F8F8]">
+                  <img
+                    src={`https://skillicons.dev/icons?i=${skill.icon}&theme=dark`}
+                    alt={skill.name}
+                    class="size-5"
+                  />
+                  {skill.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

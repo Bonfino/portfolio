@@ -1,0 +1,29 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  iconPath: string;
+  viewBox?: string;
+}
+
+const { href, label, iconPath, viewBox = "0 0 24 24" } = Astro.props;
+
+const isExternal = href.startsWith("http");
+---
+
+<a 
+  href={href}
+  target={isExternal ? "_blank" : undefined}
+  rel={isExternal ? "noopener noreferrer" : undefined}
+  aria-label={label}
+  class="flex items-center justify-center rounded-lg border border-zinc-700 p-2.5 text-gray-400 transition-transform duration-150 hover:scale-110 hover:border-zinc-500 hover:text-white"
+>
+  <svg
+    aria-hidden="true"
+    class="h-6 w-6"
+    fill="currentColor"
+    viewBox={viewBox}
+  >
+    <path d={iconPath}></path>
+  </svg>
+</a>

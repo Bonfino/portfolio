@@ -1,0 +1,192 @@
+---
+import SocialLink from "./SocialLink.astro";
+import { icons } from "../data/icons";
+
+const dotSize = 10;
+const gap = 3;
+const step = dotSize + gap;
+
+const liguriaDots: [number, number][] = [
+  [7, 0],
+  [8, 0],
+  [9, 0],
+
+  [4, 1],
+  [5, 1],
+  [6, 1],
+  [7, 1],
+  [8, 1],
+  [9, 1],
+  [10, 1],
+  [11, 1],
+
+  [1, 2],
+  [2, 2],
+  [3, 2],
+  [4, 2],
+  [5, 2],
+  [6, 2],
+  [7, 2],
+  [8, 2],
+  [9, 2],
+  [10, 2],
+  [11, 2],
+  [12, 2],
+  [13, 2],
+
+  [0, 3],
+  [1, 3],
+  [2, 3],
+  [3, 3],
+  [4, 3],
+  [5, 3],
+  [6, 3],
+  [7, 3],
+  [8, 3],
+  [9, 3],
+  [10, 3],
+  [11, 3],
+  [12, 3],
+  [13, 3],
+  [14, 3],
+  [15, 3],
+
+  [13, 4],
+  [14, 4],
+  [15, 4],
+  [16, 4],
+
+  [15, 5],
+  [16, 5],
+];
+
+const genovaSet = new Set(["8,2", "9,2", "8,3", "9,3"]);
+
+const svgWidth = 17 * step;
+const svgHeight = 6 * step;
+
+const socials = [
+  {
+    href: "https://www.linkedin.com/in/alessio-pinto-595465334",
+    label: "LinkedIn",
+    iconPath: icons.linkedin,
+  },
+  {
+    href: "mailto:alessio.pinto02@gmail.com",
+    label: "Email",
+    iconPath: icons.email,
+  },
+  {
+    href: "https://discord.com/users/212185401031524353",
+    label: "Discord",
+    iconPath: icons.discord,
+  },
+];
+---
+
+<section id="contact" class="container mx-auto py-16 px-4">
+  <div class="flex flex-col gap-10">
+    <h2 class="text-2xl font-medium tracking-widest uppercase text-white">
+      Contact
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div
+        class="border border-[#2a2a2a] rounded-lg p-6 flex flex-col justify-between gap-10"
+      >
+        <div class="flex flex-col gap-1">
+          <span
+            class="text-sm font-light tracking-widest uppercase text-[#8c8c8c]"
+            >Location</span
+          >
+          <span class="text-xl text-[#F8F8F8] font-medium">Liguria, Italy</span>
+        </div>
+
+        <div class="flex flex-col items-center gap-3">
+          <svg
+            viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+            class="w-full max-w-xs"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"
+                ></feGaussianBlur>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"></feMergeNode>
+                  <feMergeNode in="SourceGraphic"></feMergeNode>
+                </feMerge>
+              </filter>
+            </defs>
+            {
+              liguriaDots.map(([col, row]) => {
+                const key = `${col},${row}`;
+                const isGenova = genovaSet.has(key);
+                return (
+                  <rect
+                    x={col * step}
+                    y={row * step}
+                    width={dotSize}
+                    height={dotSize}
+                    rx={2}
+                    fill={isGenova ? "#F8F8F8" : "#2a2a2a"}
+                    filter={isGenova ? "url(#glow)" : undefined}
+                  />
+                );
+              })
+            }
+          </svg>
+          <span
+            class="text-xs text-[#8c8c8c] font-light tracking-widest uppercase"
+            >Genova</span
+          >
+        </div>
+
+        <span class="text-sm text-[#8c8c8c] font-light">CET Timezone</span>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <div class="border border-[#2a2a2a] rounded-lg p-6 flex flex-col gap-3">
+          <span
+            class="text-sm font-light tracking-widest uppercase text-[#8c8c8c]"
+            >Get in touch</span
+          >
+          <a
+            href="mailto:alessio.pinto02@gmail.com"
+            class="text-base text-[#8c8c8c] font-light hover:text-[#F8F8F8] transition-colors duration-200"
+          >
+            alessio.pinto02@gmail.com
+          </a>
+        </div>
+
+        <div class="border border-[#2a2a2a] rounded-lg p-6 flex flex-col gap-3">
+          <span
+            class="text-sm font-light tracking-widest uppercase text-[#8c8c8c]"
+            >Availability</span
+          >
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+              <span class="size-2 rounded-full bg-emerald-500 shrink-0"></span>
+              <span class="text-base text-[#F8F8F8] font-light"
+                >Open to work</span
+              >
+            </div>
+            <span class="text-base text-[#8c8c8c] font-light"
+              >Internship · Full-time</span
+            >
+          </div>
+        </div>
+
+        <div class="border border-[#2a2a2a] rounded-lg p-6 flex flex-col gap-3">
+          <span
+            class="text-sm font-light tracking-widest uppercase text-[#8c8c8c]"
+            >Socials</span
+          >
+          <div class="flex gap-2">
+            {socials.map((s) => <SocialLink {...s} />)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
