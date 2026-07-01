@@ -1,38 +1,54 @@
 ---
+const projects = [
+  {
+    title: "TST Media Management",
+    tags: ["PHP", "JavaScript", "SQL", "AJAX"],
+    descriptions: [
+      '<span class="text-[#F8F8F8]">WordPress plugin</span> for identifying and safely managing unused media in sites with over <span class="text-[#F8F8F8]">8,000 images</span>, with support for <span class="text-[#F8F8F8]">ACF, WooCommerce, Gutenberg, and Polylang</span>.',
+      'Batch architecture with <span class="text-[#F8F8F8]">4-step scanning</span> for shared hosting, virtual folder system, reversible trash, <span class="text-[#F8F8F8]">ZIP export</span> via WP-CLI, and recursive analysis of serialized data structures.'
+    ]
+  },
+  {
+    title: "RESTful Web API (Learning Project)",
+    tags: ["C#", ".NET 8", "EF Core", "SQL"],
+    descriptions: [
+      'A backend project I am building to learn <span class="text-[#F8F8F8]">C# .NET</span> architecture, routing, and database integrations.',
+      'Focuses on implementing <span class="text-[#F8F8F8]">CRUD operations</span>, database querying via <span class="text-[#F8F8F8]">Entity Framework Core</span>, and applying object-oriented principles to backend logic.'
+    ]
+  }
+];
 ---
 
 <section id="projects" class="container mx-auto py-16 px-4">
   <div class="flex flex-col gap-10">
-
     <h2 class="text-2xl font-medium tracking-widest uppercase text-white">
       Projects
     </h2>
 
     <div class="flex flex-col gap-10">
+      {projects.map((project) => (
+        <div class="flex flex-col gap-3">
+          <div class="flex items-baseline justify-between gap-4 flex-wrap">
+            <span class="text-xl text-[#F8F8F8] font-medium">{project.title}</span>
+            <div class="flex gap-2 flex-wrap justify-end">
+              {project.tags.map((tag) => (
+                <span class="text-xs text-[#8c8c8c] font-light border border-[#2a2a2a] rounded-full px-2.5 py-0.5">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
 
-      <!-- TST Media Management -->
-      <div class="flex flex-col gap-3">
-        <div class="flex items-baseline justify-between gap-4 flex-wrap">
-          <span class="text-xl text-[#F8F8F8] font-medium">TST Media Management</span>
-          <div class="flex gap-2 flex-wrap justify-end">
-            {["PHP", "JavaScript", "SQL", "AJAX"].map((tag) => (
-              <span class="text-xs text-[#8c8c8c] font-light border border-[#2a2a2a] rounded-full px-2.5 py-0.5">
-                {tag}
-              </span>
+          <div class="flex flex-col gap-1.5">
+            {project.descriptions.map((desc) => (
+              <p 
+                class="text-lg font-light text-[#8c8c8c] leading-relaxed pl-3 border-l border-[#2a2a2a]"
+                set:html={desc}
+              />
             ))}
           </div>
         </div>
-
-        <div class="flex flex-col gap-1.5">
-          <p class="text-lg font-light text-[#8c8c8c] leading-relaxed pl-3 border-l border-[#2a2a2a]">
-            <span class="text-[#F8F8F8]">WordPress plugin</span> for identifying and safely managing unused media in sites with over <span class="text-[#F8F8F8]">8,000 images</span>, with support for <span class="text-[#F8F8F8]">ACF</span>, <span class="text-[#F8F8F8]">WooCommerce</span>, <span class="text-[#F8F8F8]">Gutenberg</span> and <span class="text-[#F8F8F8]">Polylang</span>.
-          </p>
-          <p class="text-lg font-light text-[#8c8c8c] leading-relaxed pl-3 border-l border-[#2a2a2a]">
-            Batch architecture with <span class="text-[#F8F8F8]">4-step scanning</span> for shared hosting, virtual folder system, reversible trash, <span class="text-[#F8F8F8]">ZIP export</span> via WP-CLI and recursive analysis of serialized data structures.
-          </p>
-        </div>
-      </div>
-
+      ))}
     </div>
   </div>
 </section>

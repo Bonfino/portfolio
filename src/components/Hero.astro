@@ -2,7 +2,20 @@
 import SocialLink from "../components/SocialLink.astro";
 import { icons } from "../data/icons";
 
+const birthDate = new Date("2002-01-10");
+const today = new Date();
+let age = today.getFullYear() - birthDate.getFullYear();
+const m = today.getMonth() - birthDate.getMonth();
+if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+  age--;
+}
+
 const socials = [
+  {
+    href: "https://github.com/Bonfino",
+    label: "GitHub",
+    iconPath: icons.github,
+  },
   {
     href: "https://www.linkedin.com/in/alessio-pinto-595465334",
     label: "LinkedIn",
@@ -37,17 +50,15 @@ const socials = [
           Alessio Pinto
         </h1>
         <h2 class="text-2xl font-normal text-[#9f9fa9]">
-          Full Stack Web Developer - QA Tester
+          Web Developer & QA Specialist
         </h2>
       </div>
     </div>
 
     <p class="text-xl font-light text-[#8c8c8c] leading-relaxed mt-2">
-      Hey, I'm Alessio. I'm a 24-year-old
-      <span class="text-[#F8F8F8]"> web developer</span> from Italy.<br />
-      I'm also a <span class="text-[#F8F8F8]">QA Tester</span> with experience as
-      <span class="text-[#F8F8F8]">TTL</span> and a
-      <span class="text-[#F8F8F8]"> Gold Tester</span> on uTest.
+      Hey, I'm Alessio. I'm a {age}-year-old
+      <span class="text-[#F8F8F8]"> web developer</span> and <span class="text-[#F8F8F8]">QA Specialist</span> from Italy.
+      While my professional experience is in web development and software testing, I am currently expanding my path into backend development, learning <span class="text-[#F8F8F8]">C# .NET</span> and <span class="text-[#F8F8F8]">Docker</span>.
     </p>
     <div class="flex gap-2">
       {socials.map((s) => <SocialLink {...s} />)}
