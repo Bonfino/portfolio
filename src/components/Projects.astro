@@ -2,10 +2,12 @@
 const projects = [
   {
     title: "TST Media Management",
-    tags: ["PHP", "JavaScript", "SQL", "AJAX"],
+    subtitle: "WordPress Plugin",
+    tags: ["PHP", "JavaScript", "SQL", "AJAX", "WP-CLI"],
     descriptions: [
-      '<span class="text-[#F8F8F8]">WordPress plugin</span> for identifying and safely managing unused media in sites with over <span class="text-[#F8F8F8]">8,000 images</span>, with support for <span class="text-[#F8F8F8]">ACF, WooCommerce, Gutenberg, and Polylang</span>.',
-      'Batch architecture with <span class="text-[#F8F8F8]">4-step scanning</span> for shared hosting, virtual folder system, reversible trash, <span class="text-[#F8F8F8]">ZIP export</span> via WP-CLI, and recursive analysis of serialized data structures.'
+      'Engineered a <span class="text-[#F8F8F8]">WordPress media-management plugin</span> for sites containing <span class="text-[#F8F8F8]">8,000+ images</span>, detecting and safely managing unused assets across <span class="text-[#F8F8F8]">ACF, WooCommerce, Gutenberg, and Polylang</span> content.',
+      'Designed a <span class="text-[#F8F8F8]">four-stage batch-scanning</span> architecture for shared-hosting environments, including recursive analysis of serialized data structures.',
+      'Implemented a <span class="text-[#F8F8F8]">virtual-folder workflow</span>, reversible trash system, and <span class="text-[#F8F8F8]">WP-CLI ZIP export</span> to support safer cleanup and recovery.'
     ]
   },
 ];
@@ -21,10 +23,15 @@ const projects = [
       {projects.map((project) => (
         <div class="flex flex-col gap-3">
           <div class="flex items-baseline justify-between gap-4 flex-wrap">
-            <span class="text-xl text-[#F8F8F8] font-medium">{project.title}</span>
+            <div class="flex items-baseline gap-2 flex-wrap">
+              <span class="text-xl text-[#F8F8F8] font-medium">{project.title}</span>
+              {project.subtitle && (
+                <span class="text-sm text-[#8c8c8c] font-light italic">— {project.subtitle}</span>
+              )}
+            </div>
             <div class="flex gap-2 flex-wrap justify-end">
               {project.tags.map((tag) => (
-                <span class="text-xs text-[#8c8c8c] font-light border border-[#2a2a2a] rounded-full px-2.5 py-0.5">
+                <span class="text-xs text-[#8c8c8c] font-light border border-[#2a2a2a] bg-[#121212] rounded-full px-2.5 py-0.5">
                   {tag}
                 </span>
               ))}
